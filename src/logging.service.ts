@@ -3,8 +3,14 @@ let LOGGING_ENABLED: boolean = false;
 
 export class LoggingService {
 
+    private _loggerFor;
+
     static enable() {
         LOGGING_ENABLED = true;
+    }
+
+    static getLogger(loggerFor: any) {
+        return new LoggingService(loggerFor);
     }
 
     static debug(sender: any, msg: string, ...data: any[]): void {
@@ -66,5 +72,64 @@ export class LoggingService {
     private static getConsoleMethodParameters(sender: any, msg: any, data: any[]) {
         let parameters = [this.getMessage(sender, msg)];
         return parameters.concat(data);
+    }
+
+    constructor(loggerFor) {
+        this._loggerFor = loggerFor;
+    }
+
+    debug(...args: any[]) {
+        if (!LOGGING_ENABLED) {
+            return;
+        }
+        this.applyMethod(LoggingService.debug, args);
+    }
+
+    info(...args: any[]) {
+        if (!LOGGING_ENABLED) {
+            return;
+        }
+        this.applyMethod(LoggingService.info, args);
+    }
+
+    trace(...args: any[]) {
+        if (!LOGGING_ENABLED) {
+            return;
+        }
+        this.applyMethod(LoggingService.trace, args);
+    }
+
+    warn(...args: any[]) {
+        if (!LOGGING_ENABLED) {
+            return;
+        }
+        this.applyMethod(LoggingService.warn, args);
+    }
+
+    error(...args: any[]) {
+        if (!LOGGING_ENABLED) {
+            return;
+        }
+        this.applyMethod(LoggingService.error, args);
+    }
+
+    groupCollapsed(...args: any[]) {
+        this.applyMethod(LoggingService.groupCollapsed, args);
+    }
+
+    groupEnd() {
+        this.applyMethod(LoggingService.groupCollapsed, []);
+    }
+
+    group(...args: any[]) {
+        this.applyMethod(LoggingService.group, args);
+    }
+
+    applyMethod(method: Function, args: any[]) {
+        if (!LOGGING_ENABLED) {
+            return;
+        }
+        let params = [this._loggerFor, ...args];
+        method.apply(LoggingService, params);
     }
 }

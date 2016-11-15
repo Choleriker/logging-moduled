@@ -8,9 +8,10 @@
     "logging"
   ],
   "scripts": {
-    "test": "npm run tsc && karma start karma.conf.js",
+    "test": "npm run watch:test",
+    "watch:test": "concurrently \"npm run watch:tsc\" \"karma start karma.conf.js\"",
     "tsc": "tsc",
-    "tsc:w": "tsc -w"
+    "watch:tsc": "tsc -w"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.35",
