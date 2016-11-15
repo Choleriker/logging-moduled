@@ -1,8 +1,12 @@
 {
   "name": "logger-moduled",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple logging service for angular",
-  "homepage": "https://lpadigital.atlassian.net/wiki/display/DPP/Digital+Product+Presentation+Home",
+  "homepage": "https://github.com/Choleriker/logging-moduled",
+  "author": {
+    "name": "Michael Baarz",
+    "email": "mbaarz@gmail.com"
+  },
   "keywords": [
     "angular2",
     "logging"
