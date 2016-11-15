@@ -1,0 +1,23 @@
+{
+  "files.exclude": {
+    "node_modules/": false,
+    "typings/": false,
+    "dist/": false,
+    "bin/": false,
+    "obj/": false,
+    ".gitignore": false,
+    "Properties/": false,
+    ".vscode/": false,
+    "src/*.js": false,
+    "**/*.map": false,
+    "**/favicon.ico": false,
+    "**/LICENSE": false,
+    "Web.*.config": false,
+    "Web.config": false,
+    "*.csproj": false,
+    "*.user": false,
+    "**/*.cs": false
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "renderIndentGuides": true
+}
