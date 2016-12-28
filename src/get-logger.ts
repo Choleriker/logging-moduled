@@ -5,6 +5,6 @@ import { LoggingService } from './logging.service';
  * @export
  * @param {*} loggerFor
  */
-export function getLogger(loggerFor: any) {
+export function getLogger(loggerFor?: any) {
     return new LoggingService(loggerFor);
 }

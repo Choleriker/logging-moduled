@@ -1,5 +1,6 @@
 declare const ENV: string;
-let LOGGING_ENABLED: boolean = false;
+
+export let LOGGING_ENABLED: boolean = false;
 
 export class LoggingService {
 
@@ -66,7 +67,7 @@ export class LoggingService {
     }
 
     static getTypeName(sender: any) {
-        return sender.constructor['name'] || sender;
+        return sender ? sender.constructor['name'] || sender : '';
     }
 
     private static getConsoleMethodParameters(sender: any, msg: any, data: any[]) {
