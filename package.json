@@ -1,7 +1,7 @@
 {
   "name": "logger-moduled",
-  "version": "1.1.0",
-  "description": "Simple logging service for angular",
+  "version": "1.2.0",
+  "description": "Simple logging service and typescript logging decorators",
   "homepage": "https://github.com/Choleriker/logging-moduled",
   "author": {
     "name": "Michael Baarz",

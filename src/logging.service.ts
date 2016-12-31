@@ -1,6 +1,9 @@
 declare const ENV: string;
 
 export let LOGGING_ENABLED: boolean = false;
+export let CLASS_LOGGING_ENABLED: boolean = true;
+export let PROPERTY_LOGGING_ENABLED: boolean = true;
+export let METHOD_LOGGING_ENABLED: boolean = true;
 
 export class LoggingService {
 
@@ -67,7 +70,7 @@ export class LoggingService {
     }
 
     static getTypeName(sender: any) {
-        return sender ? sender.constructor['name'] || sender : '';
+        return sender ? typeof sender==='string' ? sender : sender.constructor['name'] || sender : '';
     }
 
     private static getConsoleMethodParameters(sender: any, msg: any, data: any[]) {
