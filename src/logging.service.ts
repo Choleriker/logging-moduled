@@ -67,7 +67,7 @@ export class LoggingService {
     }
 
     static getTypeName(sender: any) {
-        return sender ? sender.constructor['name'] || sender : '';
+        return typeof sender === 'string' ? sender : typeof sender === 'Function' ? sender.name : sender ? sender.constructor['name'] || sender : '';
     }
 
     private static getConsoleMethodParameters(sender: any, msg: any, data: any[]) {
