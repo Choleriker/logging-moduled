@@ -119,7 +119,7 @@ export class LoggingService {
     }
 
     groupEnd() {
-        this.applyMethod(LoggingService.groupCollapsed, []);
+        this.applyMethod(LoggingService.groupEnd, []);
     }
 
     group(...args: any[]) {
