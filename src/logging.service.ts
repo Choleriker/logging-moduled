@@ -11,6 +11,9 @@ export class LoggingService {
     }
 
     static getLogger(loggerFor: any) {
+        if(typeof loggerFor !== 'undefined' && typeof loggerFor !== 'string' && typeof loggerFor !== 'number' && !loggerFor.__instanceId) {
+            loggerFor.__instanceId++;
+        }
         return new LoggingService(loggerFor);
     }
 
@@ -63,7 +66,8 @@ export class LoggingService {
     }
 
     static getMessage(sender: any, msg: string): string {
-        return `${new Date().toLocaleTimeString()} <${this.getTypeName(sender)}> ${msg}`;
+        let instanceIdSuffix = sender.__instanceId ? '#'+sender._instanceId : '';
+        return `${new Date().toLocaleTimeString()} <${this.getTypeName(sender)}${instanceIdSuffix}> ${msg}`;
     }
 
     static getTypeName(sender: any) {
