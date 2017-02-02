@@ -1,5 +1,7 @@
 declare const ENV: string;
 
+let INSTANCE_ID_COUNT = 0;
+
 export let LOGGING_ENABLED: boolean = false;
 
 export class LoggingService {
@@ -11,8 +13,14 @@ export class LoggingService {
     }
 
     static getLogger(loggerFor: any) {
-        if(typeof loggerFor !== 'undefined' && typeof loggerFor !== 'string' && typeof loggerFor !== 'number' && !loggerFor.__instanceId) {
-            loggerFor.__instanceId++;
+        if (loggerFor) {
+            if (typeof loggerFor === 'object' && !loggerFor.__instanceId) {
+                loggerFor.__instanceId = INSTANCE_ID_COUNT++;
+            }
+            if(loggerFor.__currentLogger) {
+                return loggerFor.__currentLogger;
+            }
+            loggerFor.__currentLogger = new LoggingService(loggerFor);
         }
         return new LoggingService(loggerFor);
     }
@@ -66,7 +74,7 @@ export class LoggingService {
     }
 
     static getMessage(sender: any, msg: string): string {
-        let instanceIdSuffix = sender.__instanceId ? '#'+sender._instanceId : '';
+        let instanceIdSuffix = sender.__instanceId ? '#' + sender.__instanceId : '';
         return `${new Date().toLocaleTimeString()} <${this.getTypeName(sender)}${instanceIdSuffix}> ${msg}`;
     }
 
